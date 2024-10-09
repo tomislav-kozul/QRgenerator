@@ -1,0 +1,23 @@
+{
+  "name": "qrgenerator",
+  "version": "1.0.0",
+  "description": "App for simple QR code generation",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomislav-kozul/QRgenerator.git"
+  },
+  "author": "Tomislav Kožul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomislav-kozul/QRgenerator/issues"
+  },
+  "homepage": "https://github.com/tomislav-kozul/QRgenerator#readme",
+  "dependencies": {
+    "express": "^4.21.0",
+    "pg": "^8.13.0"
+  }
+}
