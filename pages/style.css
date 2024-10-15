@@ -1,5 +1,9 @@
 body {
-    background-color: lightblue; /* Adds light blue background to the whole page */
+    background-color: lightblue; 
+}
+
+.no-show {
+    display: none;
 }
 
 .title {
