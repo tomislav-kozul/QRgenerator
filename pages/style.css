@@ -1,11 +1,125 @@
 body {
-    background-color: lightblue; 
+    background-color: #333; 
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Tahoma', sans-serif;
+    font-weight: 600;
 }
 
 .no-show {
     display: none;
 }
 
-.title {
-    color: rgb(41, 41, 41);
+.header-bar {
+    font-size: 120px;
+    display: flex;
+    text-align: right;
+    justify-content: end;
+    color:#777;
+}
+
+.content {
+    padding: 0px;
+    background-color: white;
+    color: black;
+}
+
+.content-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    min-height: 100vh;
+}
+
+.column {
+    padding: 10px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.column-left {
+    flex: 0 0 60%; /* Takes up 60% of the width */
+    display: flex;
+    justify-content: flex-end; /* Aligns content (input-section) to the right */
+    padding-right: 20px; /* Optional: Add some padding if needed */
+    box-sizing: border-box;
+}
+
+.column-right {
+    flex: 0 0 40%; /* Takes up 40% of the width */
+    padding-left: 80px;
+    color: rgb(211, 211, 211);
+    font-size: 36px;
+}
+
+.divider {
+    width: 1px; /* Thin vertical line */
+    background-color: #777; /* White line color */
+    height: 80%; /* Line spans 80% of the height of the bar */
+    position: absolute;
+    left: 60%; /* Position it where the left column ends */
+    top: 10%; /* Center the line vertically */
+    transform: translateY(0%); /* Adjust for centering */
+}
+
+.codes-count {
+    font-size: 64px;
+    color: white;
+}
+
+.input-section input {
+    width: 70%;
+    padding: 10px;
+    background-color: #555; /* Dark gray background for inputs */
+    border: 1px solid #777; /* Thin white outline */
+    color: #d3d3d3; /* White text inside the input fields */
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    border-radius: 0; /* Square input fields */
+    font-size: 16px;
+}
+
+.input-section {
+    width: 80%; /* Adjust width as needed */
+    background-color: #333; /* Dark gray background */
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.input-section button {
+    width: 50%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #777; /* White background for button */
+    color: #333; /* Dark text color */
+    border: 1px solid #333; /* Border matching the background */
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 0; /* Square button */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    font-size: 24px;
+}
+
+.input-section button:hover {
+    background-color: #333; /* Gray background when hovered */
+    color: white; /* Change text color to white when hovered */
+    border: 1px solid rgb(148, 148, 148); /* Border matching the background */
+}
+
+.input-section label {
+    color: #777;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-form-title {
+    font-size: 56px;
+    text-align: left;
+    color:#555;
+}
+
+.input-form {
+    width: 90%;
 }

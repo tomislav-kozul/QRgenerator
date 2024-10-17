@@ -8,36 +8,75 @@
     <script src="/index.js" defer></script>    
 </head>
 <body>
-    <div class="content">
-        <h1 class="title">Hello bruv</h1>
-        <p>Welcome to QR code generator</p>
-        <h2><span id="totalCodesGenerated">Loading...</span></h2>
-        <p>QR codes generated</p>
-    </div>
-    <div class="input-section">
-        <form id="inputForm">
-            <label for="vat_input">VAT:</label>
-            <input type="number" id="vat_input" required><br><br>
-            
-            <label for="first_name_input">First Name:</label>
-            <input type="text" id="first_name_input" required><br><br>
-            
-            <label for="last_name_input">Last Name:</label>
-            <input type="text" id="last_name_input" required><br><br>
-    
-            <button type="submit">Generate QR</button>
-        </form>
-    </div>
-    <div class="response no-show">
-        <h2><span id="response-first-name"></span>, your QR code is generated!</h2>
-        <div class="qr-section">
-            <img id="qr-code-image"></canvas>
+
+    <div class="content-row">
+        <div class="column column-left">
+            <div class="header-bar">
+                <h1 class="title">QR</h1>
+            </div>
         </div>
-        <h3>QR codes left for vat "<span id="response-vat"></span>": <span id="response-left"></span></h3>
+        <div class="divider"></div>
+        <div class="column column-right">
+            <span class="codes-count" id="totalCodesGenerated">Loading...</span>
+            <p>QR codes generated</p>
+        </div>
     </div>
-    <div class="error no-show">
-        <h2 class="error-text"><span id="error-text"></span></h2>
+    
+    <div class="content-row">
+        <div class="column column-left">
+            
+            <div class="input-section">
+                <p class="input-form-title">...generate code</p>
+                <form id="inputForm" class="input-form">
+                    <label for="vat_input">VAT:</label>
+                    <input type="number" id="vat_input" required><br><br>
+                    
+                    <label for="first_name_input">First Name:</label>
+                    <input type="text" id="first_name_input" required><br><br>
+                    
+                    <label for="last_name_input">Last Name:</label>
+                    <input type="text" id="last_name_input" required><br><br>
+            
+                    <button type="submit">Generate QR</button>
+                </form>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="column column-right">
+            <span class="codes-count" id="totalCodesGenerated">Loading...</span>
+            <p>QR codes generated</p>
+        </div>
     </div>
+
+    
+    <div class="content">
+        <p>Welcome to QR code generator</p>
+        <div class="input-section">
+            <form id="inputForm">
+                <label for="vat_input">VAT:</label>
+                <input type="number" id="vat_input" required><br><br>
+                
+                <label for="first_name_input">First Name:</label>
+                <input type="text" id="first_name_input" required><br><br>
+                
+                <label for="last_name_input">Last Name:</label>
+                <input type="text" id="last_name_input" required><br><br>
+        
+                <button type="submit">Generate QR</button>
+            </form>
+        </div>
+        <div class="response no-show">
+            <h2><span id="response-first-name"></span>, your QR code is generated!</h2>
+            <div class="qr-section">
+                <img id="qr-code-image"></canvas>
+            </div>
+            <h3>QR codes left for vat "<span id="response-vat"></span>": <span id="response-left"></span></h3>
+        </div>
+        <div class="error no-show">
+            <h2 class="error-text"><span id="error-text"></span></h2>
+        </div>
+    </div>
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.4.4/qrcode.js" integrity="sha512-oxrVyBhqnzQ0BzuM0A/6dEIk0alz0p4SpDRaWvtuUoarIc8rnL5lVniHG5Dp21MRFojcQcmKHjaskNXhSaUPPw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>

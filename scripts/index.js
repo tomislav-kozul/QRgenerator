@@ -9,8 +9,6 @@ function fetchGeneratedNumber() {
         });
 }
 
-
-
 window.onload = function() {
     fetchGeneratedNumber();
     
