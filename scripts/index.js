@@ -9,6 +9,15 @@ function fetchGeneratedNumber() {
         });
 }
 
+async function getTokenFromServer() {
+    try {
+        const response = await axios.get('/api/token');  
+        return response.data.token;
+    } catch (error) {
+        throw error;
+    }
+}
+
 window.onload = function() {
     fetchGeneratedNumber();
     
@@ -18,38 +27,44 @@ window.onload = function() {
         const vat_input = document.getElementById('vat_input').value;
         const first_name_input = document.getElementById('first_name_input').value;
         const last_name_input = document.getElementById('last_name_input').value;
-    
-        console.log("macka");
-    
+        
         const inputData = {
             vatin: vat_input,
             firstName: first_name_input,
             lastName: last_name_input
         };
     
-        console.log(JSON.stringify(inputData));
-    
         try {
-            const response = await fetch('/api/generate-code', {
+            /*const response = await fetch('/api/generate-code', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(inputData),
+            });*/
+
+            const accessToken = await getTokenFromServer();
+            const generateCodeURL = window.location.origin + '/api/generate-code';
+
+            const response = await axios.post(generateCodeURL, inputData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}` 
+                }
             });
     
-            if (!response.ok) {
-                
-                const errorData = await response.json();
-                throw new Error(errorData.error);
+            if (response.status !== 200) {
+                throw new Error(`Error: ${response.statusText}`);
             }
-            const data = await response.json();
+            const data = response.data;
 
             const id = data.id;
             const currentDomain = window.location.origin;
-            const qrURL = currentDomain + '/' + id
+            const qrURL = currentDomain + '/ticket/' + id
     
-            const dataURL = await QRCode.toDataURL(qrURL);
+            const dataURL = await QRCode.toDataURL(qrURL, {
+                width: 512
+            });
             const qrImage = document.getElementById("qr-code-image");
             qrImage.src = dataURL;
 
@@ -63,8 +78,11 @@ window.onload = function() {
             document.querySelector('.response').classList.add('no-show');
             document.querySelector('.error').classList.remove('no-show');
 
-            document.getElementById('error-text').innerText = err.message;
+            if (err.response && err.response.data && err.response.data.error) {
+                document.getElementById('error-text').innerText = err.response.data.error;
+            } else {
+                document.getElementById('error-text').innerText = err.message || 'An unexpected error occurred';
+            }
         }
     });
-    
 }

@@ -5,15 +5,11 @@ document.getElementById('inputForm').addEventListener('submit', async function(e
     const first_name_input = document.getElementById('first_name_input').value;
     const last_name_input = document.getElementById('last_name_input').value;
 
-    console.log("macka");
-
     const inputData = {
         vatin: vat_input,
         firstName: first_name_input,
         lastName: last_name_input
     };
-
-    console.log(JSON.stringify(inputData));
 
     try {
         const response = await fetch('/api/generate-code', {
@@ -29,7 +25,6 @@ document.getElementById('inputForm').addEventListener('submit', async function(e
         }
 
         const data = await response.json();
-        console.log('Success:', data);
 
         const id = data.id;
         const currentDomain = window.location.origin;

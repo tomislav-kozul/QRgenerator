@@ -1,8 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const dbClient = require('../pgdatabase'); 
+const { auth } = require('express-oauth2-jwt-bearer');
+const { getToken } = require('./authService');
+
+const checkJwt = auth({
+    audience: process.env.AUTH0_AUDIENCE,
+    issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`,
+    tokenSigningAlg: 'RS256'
+});
 
 router.use(express.json());
+
+router.get('/token', async (req, res) => {
+    try {
+        const token = await getToken();  
+        res.json({ token });
+    } catch (error) {
+        res.status(500).json({ error: 'Access token was not fetched successfuly' });
+    }
+});
 
 router.get('/qrcodes/count', async (req, res) => {
     try {
@@ -13,8 +30,8 @@ router.get('/qrcodes/count', async (req, res) => {
     }
 });
 
-router.post('/generate-code', async (req, res) => {
-    if (req.body === undefined) {
+router.post('/generate-code', checkJwt, async (req, res) => {
+    if (!req.body) {
         return res.status(400).json({ error: 'Invalid request!' });
     }
 
@@ -32,7 +49,7 @@ router.post('/generate-code', async (req, res) => {
 
         // ovdje je problem jer imamo previse kodova
         if (countInt > 2) {
-            return res.status(400).json({ error: `No more QR codes are left for vat ${vatin}` });
+            return res.status(400).json({ error: `No more QR codes are left for vat "${vatin}"` });
         }
         // ako je 0 dodaj usera
         if (countInt === 0) {

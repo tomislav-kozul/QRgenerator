@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tomislav Kožul">
+    <title>QRity - Ticket</title>
+    <base href="/">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="user-data">
+
+    </div>
+    <div class="ticket-container">
+        <div class="ticket-data">
+            <p class="container-title">Ticket Information</p>
+            <p class="ticket-info"><strong>VAT:</strong> <%= ticketData.vat %></p>
+            <p class="ticket-info"><strong>First Name:</strong> <%= ticketData.first_name %></p>
+            <p class="ticket-info"><strong>Last Name:</strong> <%= ticketData.last_name %></p>
+            <p class="ticket-info"><strong>Created:</strong> <%= new Date(ticketData.creation_time).toLocaleString() %></p>
+        </div>
+    </div>
+    <p class="copyright">© 2024 Tomislav Kožul</p>
+</body>
+</html>
