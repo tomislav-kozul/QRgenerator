@@ -44,11 +44,13 @@
         </div>
         <div class="divider"></div>
         <div class="column column-right result-container">
+            <p class="generating-text response-header no-show" id="generating-text">Generating Code...</p>
             <div class="response no-show">
                 <p class="response-header"><span id="response-first-name"></span>, your QR code is generated!</p>
                 <div class="qr-section">
                     <img class="qr-image" id="qr-code-image"></canvas>
                 </div>
+                <p class="ticket-url">Ticket URL: "<span id="response-url"></span>"</p>
                 <p class="qr-left">QR codes left for vat "<span id="response-vat"></span>": <span id="response-left"></span></p>
             </div>
             <div class="error no-show">

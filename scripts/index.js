@@ -23,6 +23,10 @@ window.onload = function() {
     
     document.getElementById('inputForm').addEventListener('submit', async function(event) {
         event.preventDefault();
+
+        document.querySelector('.response').classList.add('no-show');
+        document.querySelector('.error').classList.add('no-show');
+        document.querySelector('.generating-text').classList.remove('no-show');
     
         const vat_input = document.getElementById('vat_input').value;
         const first_name_input = document.getElementById('first_name_input').value;
@@ -35,14 +39,6 @@ window.onload = function() {
         };
     
         try {
-            /*const response = await fetch('/api/generate-code', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(inputData),
-            });*/
-
             const accessToken = await getTokenFromServer();
             const generateCodeURL = window.location.origin + '/api/generate-code';
 
@@ -71,12 +67,15 @@ window.onload = function() {
             document.getElementById('response-first-name').innerText = first_name_input;
             document.getElementById('response-vat').innerText = vat_input;
             document.getElementById('response-left').innerText = data.left;
+            document.getElementById('response-url').innerText = qrURL;
 
             document.querySelector('.response').classList.remove('no-show');
             document.querySelector('.error').classList.add('no-show');
+            document.querySelector('.generating-text').classList.add('no-show');
         } catch (err) {
             document.querySelector('.response').classList.add('no-show');
             document.querySelector('.error').classList.remove('no-show');
+            document.querySelector('.generating-text').classList.add('no-show');
 
             if (err.response && err.response.data && err.response.data.error) {
                 document.getElementById('error-text').innerText = err.response.data.error;

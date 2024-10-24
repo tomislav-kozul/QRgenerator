@@ -8,8 +8,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="user-data">
-
+    <div class="header">
+        <div class="header-element left">
+            <button class="log-out-button" onclick="logout()">LOG OUT</button>
+        </div>
+        <div class="header-element username right">
+            <%= user %>
+        </div>
     </div>
     <div class="ticket-container">
         <div class="ticket-data">
@@ -21,5 +26,12 @@
         </div>
     </div>
     <p class="copyright">© 2024 Tomislav Kožul</p>
+
+    <script>
+        function logout() {
+            const fullUrl = window.location.origin + '/logout';
+            window.location.href = fullUrl;
+        }
+    </script>
 </body>
 </html>

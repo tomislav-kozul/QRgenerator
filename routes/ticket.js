@@ -1,20 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const dbClient = require('../pgdatabase'); 
-require('dotenv').config();
-const { auth } = require('express-oauth2-jwt-bearer');
-
+const { requiresAuth } = require('express-openid-connect');
 
 router.use(express.json()); 
 
-const checkJwt = auth({
-    audience: process.env.AUTH0_AUDIENCE,
-    issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`,
-    tokenSigningAlg: 'RS256'
-});
-
-router.get('/:ticketID', checkJwt, async (req, res) => {
-    const userInfo = req.auth;
+router.get('/:ticketID', requiresAuth(), async (req, res) => {
+    const userID = req.oidc.user.name;
     const ticketID = req.params.ticketID;
 
     try {
@@ -23,18 +15,14 @@ router.get('/:ticketID', checkJwt, async (req, res) => {
         const rowsCount = parseInt(ticketDataResponse.rows.length);
         if (rowsCount === 0) {
             err_msg = "Ticked ID not found";
-            return res.status(404).render('error', { message: err_msg });
+            return res.status(404).render('error', { message: err_msg, user: userID });
         } else {
             const ticketData = ticketDataResponse.rows[0]
-            const usernameURL = 'https://' + process.env.AUTH0_DOMAIN + '/username'
-            const username = userInfo.claims[usernameURL];
-            console.log(username)
-            console.log("username")
-            return res.render('ticket', { ticketData, username });
+            return res.render('ticket', { ticketData, user: userID });
         }
     } catch (err) {
         err_msg = "Invalid ticket URL"
-        return res.status(400).render('error', { message: err_msg });
+        return res.status(400).render('error', { message: err_msg, user: userID });
     }
 });
 

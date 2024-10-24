@@ -129,7 +129,7 @@ body {
 }
 
 .error-text {
-    color: rgb(255, 85, 85);
+    color: rgb(255, 75, 75);
     font-size: 48px;
 }
 
@@ -143,6 +143,10 @@ body {
 
 .qr-left {
     font-size: 26px;
+}
+
+.ticket-url {
+    font-size: 20px;
 }
 
 .copyright {
@@ -164,13 +168,13 @@ body {
 }
 
 .ticket-info {
-    font-size: 36px;
+    font-size: 30px;
     color: #777;
 }
 
 .ticket-container {
     display: flex;
-    height: 90vh;
+    height: 70vh;
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -179,4 +183,44 @@ body {
 
 .error-container {
     width: 50%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.header-element {
+    padding: 10px;
+    font-size: 24px;
+}
+
+.left {
+    text-align: left;
+}
+
+.username {
+    color: #777;
+}
+
+.right {
+    text-align: right;
+}
+
+.log-out-button {
+    background-color: #333; 
+    color: #777; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+    border: 0px;
+    font-family: 'Tahoma', sans-serif;
+    font-weight: 600;
+}
+
+.log-out-button:hover {
+    background-color: #333; 
+    color: #888; 
 }
