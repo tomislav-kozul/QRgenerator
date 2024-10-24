@@ -25,9 +25,9 @@ const config = {
 app.use(auth(config));
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'pages'));
+//app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static(path.join(__dirname, 'pages')));
+app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'scripts')));
 
 app.use('/api', api);

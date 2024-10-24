@@ -7,7 +7,7 @@ router.get('/logout', (req, res) => {
     res.oidc.logout();
 });
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../pages/index.html'));
+    res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 
 module.exports = router;
